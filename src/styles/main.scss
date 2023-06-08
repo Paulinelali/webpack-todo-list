@@ -1,4 +1,74 @@
-body{
-    background-color: teal;
-    color: white
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(231, 231, 231);
+}
+
+.todo-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 50%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+.todo-form {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 5px 5px grey;
+  padding: 0 10px 0 10px;
+}
+
+button,
+.icon {
+  border: none;
+  background-color: transparent;
+  color: gray;
+  font-size: 20px;
+}
+
+.input-field {
+  width: 100%;
+  margin: auto;
+  height: 55px;
+  border: none;
+  background-color: white;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: auto;
+  box-shadow: 0 5px 5px grey;
+  align-items: center;
+  padding: 0 10px 0 10px;
+  height: 55px;
+  background-color: white;
+}
+
+.dot {
+  font-size: 1.5rem;
+}
+
+.right {
+  display: flex;
+  gap: 15px;
+}
+
+.right input {
+  align-items: center;
+}
+
+.clear-all-complete {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(231, 231, 231);
 }
