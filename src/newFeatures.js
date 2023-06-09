@@ -19,6 +19,29 @@ const clearTodo = () => {
   ul.appendChild(li);
 };
 
+const edit = () => {
+  const todoText = document.querySelectorAll('.todo-text');
+  const newArr = [];
+  todoText.forEach((el) => {
+    el.addEventListener('focusout', () => {
+      let fromLocal = localStorage.getItem('task');
+      fromLocal = JSON.parse(fromLocal);
+      const elId = el.id;
+      const newTask = document.getElementById(elId).innerHTML;
+      let fieldCounter = `${el.className.split(' ')[1]}`;
+      fieldCounter *= 1;
+      for (let i = 0; i < fromLocal.length; i += 1) {
+        if (fromLocal[i] === fromLocal[fieldCounter]) {
+          fromLocal[i].task = newTask;
+        }
+        newArr.push(fromLocal[i]);
+      }
+
+      localStorage.setItem('task', JSON.stringify(newArr));
+    });
+  });
+};
+
 const ediTable = () => {
   const startEdit = document.querySelectorAll('.dot');
   const editable = document.querySelectorAll('.todo-text');
@@ -41,6 +64,8 @@ const ediTable = () => {
       hoveFnc(trashCan);
       trashCan.classList.toggle('init-hide');
       editable.contentEditable = true;
+
+      edit();
     });
   });
 
@@ -91,7 +116,7 @@ const ediTable = () => {
       };
 
       stockDomCopy();
-    // above is same as calling stockDom()
+      // above is same as calling stockDom()
     });
   });
 };
@@ -110,7 +135,7 @@ const stockDom = () => {
       li.innerHTML = `
                     <div class="right">
                         <input type="checkbox" class="checker"> 
-                        <span class="todo-text" id="editable-${counter}">
+                        <span class="todo-text ${counter}" id="editable-${counter}">
                             ${el.task}
                         </span>
                     </div>
@@ -154,11 +179,11 @@ const createTask = () => {
   form.reset();
 };
 
-function name(e) {
+function formFnc(e) {
   e.preventDefault();
   createTask();
   stockDom();
 }
-form.addEventListener('submit', name);
+form.addEventListener('submit', formFnc);
 
 export default stockDom;
