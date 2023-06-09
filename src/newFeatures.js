@@ -1,3 +1,6 @@
+
+
+
 const taskField = document.querySelector('.input-field');
 const form = document.querySelector('.todo-form');
 const ul = document.querySelector('.ul');
@@ -180,6 +183,7 @@ const createTask = () => {
   form.reset();
 };
 
+// function called on hitting the "enter" key which is same as submitting a form
 function formFnc(e) {
   e.preventDefault();
   createTask();
