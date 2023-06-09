@@ -8,7 +8,7 @@ let arr = [];
 let arrFromLocal = [];
 let taskIndex = 0;
 
-// append clear all complete
+// append  clear all complete
 const clearTodo = () => {
     const li = document.createElement('li');
     li.classList.add('todo');
