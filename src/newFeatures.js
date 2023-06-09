@@ -136,5 +136,4 @@ const createTask = () => {
   }
 form.addEventListener("submit", name);
 
-
 export {stockDom}
