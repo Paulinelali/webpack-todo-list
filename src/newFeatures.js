@@ -180,6 +180,7 @@ const createTask = () => {
   form.reset();
 };
 
+// function called on hitting the "enter" key which is same as submitting a form
 function formFnc(e) {
   e.preventDefault();
   createTask();
