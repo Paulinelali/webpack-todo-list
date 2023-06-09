@@ -34,7 +34,7 @@ const edit = () => {
         if (fromLocal[i] === fromLocal[fieldCounter]) {
           fromLocal[i].task = newTask;
         }
-        
+
         newArr.push(fromLocal[i]);
       }
 
