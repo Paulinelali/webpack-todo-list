@@ -2,6 +2,101 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/newFeatures.js":
+/*!****************************!*\
+  !*** ./src/newFeatures.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   stockDom: () => (/* binding */ stockDom)
+/* harmony export */ });
+var taskField = document.querySelector(".input-field");
+var form = document.querySelector(".todo-form");
+var ul = document.querySelector('.ul');
+var arr = [];
+var arrFromLocal = [];
+var taskIndex = 0;
+
+// append clear all complete
+var clearTodo = function clearTodo() {
+  var li = document.createElement('li');
+  li.classList.add('todo');
+  li.classList.add('clear-all-complete');
+  li.innerHTML = "\n              <div>\n              <button class=\"clear-all-complete-btn\">Clear All Complete</button>\n              </div>\n          ";
+  ul.appendChild(li);
+};
+var ediTable = function ediTable() {
+  var startEdit = document.querySelectorAll(".dot");
+  var editable = document.querySelectorAll(".todo-text");
+  var trashCan = document.querySelectorAll(".trash-can");
+  startEdit.forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.target.classList.toggle("init-hide");
+      trashCan.classList.toggle("init-hide");
+      editable.contentEditable = true;
+    });
+  });
+};
+
+// stock DOM
+var stockDom = function stockDom() {
+  ul.innerHTML = '';
+  var fromLocal = localStorage.getItem("task");
+  if (fromLocal) {
+    fromLocal = JSON.parse(fromLocal);
+    fromLocal.forEach(function (el) {
+      var li = document.createElement('li');
+      li.classList.add('todo');
+      li.innerHTML = "\n                    <div class=\"right\">\n                        <input type=\"checkbox\" class=\"checker\"> \n                        <span class=\"todo-text\">\n                            ".concat(el.task, "\n                        </span>\n                    </div>\n                    <div class=\"dot-wrapper\">\n                        <span class=\"dot\">&#8942;</span>\n                    </div>\n                    <i class=\"fas fa-trash init-hide trash-can\"></i>\n                ");
+      ul.appendChild(li);
+    });
+  }
+  ediTable();
+  clearTodo();
+};
+// create and store task in local storage
+var createTask = function createTask() {
+  // get local storage
+  var local = localStorage.getItem("task");
+  if (local) {
+    var fromLocal = JSON.parse(local);
+    taskIndex = fromLocal.length;
+    console.log(taskIndex);
+    fromLocal.forEach(function (el) {
+      arr.push(el);
+    });
+  }
+  console.log(taskIndex);
+  var _loop = function _loop(i) {
+    setTimeout(function () {
+      console.log(i);
+    }, 100);
+  };
+  for (var i = 0; i < 10; i++) {
+    _loop(i);
+  }
+  var objectRep = {
+    task: taskField.value,
+    complete: false,
+    index: taskIndex
+  };
+  arr.push(objectRep);
+  localStorage.setItem("task", JSON.stringify(arr));
+  arr = [];
+  form.reset();
+};
+function name(e) {
+  e.preventDefault();
+  createTask();
+  stockDom();
+}
+form.addEventListener("submit", name);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/main.scss":
 /*!***********************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/main.scss ***!
@@ -28,7 +123,14 @@ ___CSS_LOADER_EXPORT___.push([module.id, `* {
 }
 
 body {
-  background-color: rgb(231, 231, 231);
+  background-color: rgb(254, 251, 251);
+}
+
+.main-wrapper {
+  margin: 5% 0 5% 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .todo-wrapper {
@@ -37,20 +139,22 @@ body {
   gap: 2px;
   width: 50%;
   margin: auto;
-  margin-top: 5%;
 }
 
 .todo-form {
   display: flex;
   align-items: center;
   background-color: white;
-  box-shadow: 0px 5px 5px grey;
+  box-shadow: 0 5px 5px grey;
   padding: 0 10px 0 10px;
 }
 
-button {
+button,
+.icon {
   border: none;
   background-color: transparent;
+  color: gray;
+  font-size: 20px;
 }
 
 .input-field {
@@ -61,16 +165,25 @@ button {
   background-color: white;
 }
 
+.input-field:focus {
+  outline: none;
+}
+
 .todo {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin: auto;
-  box-shadow: 0px 5px 5px grey;
+  box-shadow: 0 5px 5px grey;
   align-items: center;
   padding: 0 10px 0 10px;
   height: 55px;
   background-color: white;
+}
+
+.taskShelf {
+  width: 100%;
+  height: 100%;
 }
 
 .dot {
@@ -84,7 +197,22 @@ button {
 
 .right input {
   align-items: center;
-}`, "",{"version":3,"sources":["webpack://./src/styles/main.scss"],"names":[],"mappings":"AAEA;EACI,SAAA;EACA,UAAA;EACA,sBAAA;AADJ;;AAIA;EACI,oCAAA;AADJ;;AAIA;EACI,aAAA;EACA,sBAAA;EACA,QAAA;EACA,UAAA;EACA,YAAA;EACA,cAAA;AADJ;;AAIA;EACI,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,4BAAA;EACA,sBAAA;AADJ;;AAIA;EACI,YAAA;EACA,6BAAA;AADJ;;AAIA;EACI,WAAA;EACA,YAAA;EACA,YAAA;EACA,YAAA;EACA,uBAAA;AADJ;;AAIA;EACI,aAAA;EACA,8BAAA;EACA,WAAA;EACA,YAAA;EACA,4BAAA;EACA,mBAAA;EACA,sBAAA;EACA,YAAA;EACA,uBAAA;AADJ;;AAIA;EACI,iBAAA;AADJ;;AAIA;EACI,aAAA;EACA,SAAA;AADJ;;AAIA;EACI,mBAAA;AADJ","sourcesContent":["\r\n\r\n*{\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n}\r\n\r\nbody{\r\n    background-color: rgb(231, 231, 231);\r\n}\r\n\r\n.todo-wrapper{\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 2px;\r\n    width: 50%;\r\n    margin: auto;\r\n    margin-top: 5%;\r\n}\r\n\r\n.todo-form{\r\n    display: flex;\r\n    align-items: center;\r\n    background-color: white;\r\n    box-shadow: 0px 5px 5px grey;\r\n    padding: 0 10px 0 10px;\r\n}\r\n\r\nbutton{\r\n    border: none;\r\n    background-color: transparent;\r\n}\r\n\r\n.input-field{\r\n    width: 100%;\r\n    margin: auto;\r\n    height: 55px;\r\n    border: none;\r\n    background-color: white;\r\n}\r\n\r\n.todo{\r\n    display: flex;\r\n    justify-content: space-between;\r\n    width: 100%;\r\n    margin: auto;\r\n    box-shadow: 0px 5px 5px grey;\r\n    align-items: center;\r\n    padding: 0 10px 0 10px;\r\n    height: 55px;\r\n    background-color: white;\r\n}\r\n\r\n.dot{\r\n    font-size: 1.5rem;\r\n}\r\n\r\n.right{\r\n    display: flex;\r\n    gap: 15px;\r\n}\r\n\r\n.right input{\r\n    align-items: center;\r\n}"],"sourceRoot":""}]);
+}
+
+#form-title-wrapper {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.clear-all-complete {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(226, 224, 224);
+}
+
+.init-hide {
+  display: none;
+}`, "",{"version":3,"sources":["webpack://./src/styles/main.scss"],"names":[],"mappings":"AACA;EACE,SAAA;EACA,UAAA;EACA,sBAAA;AAAF;;AAGA;EACE,oCAAA;AAAF;;AAGA;EACE,iBAAA;EACA,aAAA;EACA,sBAAA;EACA,QAAA;AAAF;;AAGA;EACE,aAAA;EACA,sBAAA;EACA,QAAA;EACA,UAAA;EACA,YAAA;AAAF;;AAGA;EACE,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,0BAAA;EACA,sBAAA;AAAF;;AAGA;;EAEE,YAAA;EACA,6BAAA;EACA,WAAA;EACA,eAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,YAAA;EACA,YAAA;EACA,uBAAA;AAAF;;AAGA;EACE,aAAA;AAAF;;AAEA;EACE,aAAA;EACA,8BAAA;EACA,WAAA;EACA,YAAA;EACA,0BAAA;EACA,mBAAA;EACA,sBAAA;EACA,YAAA;EACA,uBAAA;AACF;;AAEA;EACE,WAAA;EACA,YAAA;AACF;;AAEA;EACE,iBAAA;AACF;;AAEA;EACE,aAAA;EACA,SAAA;AACF;;AAEA;EACE,mBAAA;AACF;;AAEA;EACE,UAAA;EACA,gBAAA;AACF;;AAEA;EACE,aAAA;EACA,uBAAA;EACA,oCAAA;AACF;;AAEA;EACE,aAAA;AACF","sourcesContent":["\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  background-color: rgb(254, 251, 251);\r\n}\r\n\r\n.main-wrapper{\r\n  margin: 5% 0 5% 0;\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 2px;\r\n}\r\n\r\n.todo-wrapper {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 2px;\r\n  width: 50%;\r\n  margin: auto;\r\n}\r\n\r\n.todo-form {\r\n  display: flex;\r\n  align-items: center;\r\n  background-color: white;\r\n  box-shadow: 0 5px 5px grey;\r\n  padding: 0 10px 0 10px;\r\n}\r\n\r\nbutton,\r\n.icon {\r\n  border: none;\r\n  background-color: transparent;\r\n  color: gray;\r\n  font-size: 20px;\r\n}\r\n\r\n.input-field {\r\n  width: 100%;\r\n  margin: auto;\r\n  height: 55px;\r\n  border: none;\r\n  background-color: white;\r\n}\r\n\r\n.input-field:focus{\r\n  outline: none;\r\n}\r\n.todo {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  width: 100%;\r\n  margin: auto;\r\n  box-shadow: 0 5px 5px grey;\r\n  align-items: center;\r\n  padding: 0 10px 0 10px;\r\n  height: 55px;\r\n  background-color: white;\r\n}\r\n\r\n.taskShelf{\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.dot {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.right {\r\n  display: flex;\r\n  gap: 15px;\r\n}\r\n\r\n.right input {\r\n  align-items: center;\r\n}\r\n\r\n#form-title-wrapper{\r\n  padding: 0;\r\n  margin-bottom: 0;\r\n}\r\n\r\n.clear-all-complete {\r\n  display: flex;\r\n  justify-content: center;\r\n  background-color: rgb(226, 224, 224);\r\n}\r\n\r\n.init-hide{\r\n  display: none\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -612,39 +740,11 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/main.scss */ "./src/styles/main.scss");
+/* harmony import */ var _newFeatures__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./newFeatures */ "./src/newFeatures.js");
 
-var ul = document.querySelector(".todo-wrapper");
-var todo_1 = {
-  description: "First task",
-  complete: false,
-  index: 1
-};
-var todo_2 = {
-  description: "Second task",
-  complete: false,
-  index: 2
-};
-var todo_3 = {
-  description: "Third task",
-  complete: false,
-  index: 3
-};
-var todo_4 = {
-  description: "Fourth task",
-  complete: false,
-  index: 4
-};
-var todoArr = [todo_1, todo_2, todo_3, todo_4];
-var stockDom = function stockDom() {
-  todoArr.forEach(function (el) {
-    var li = document.createElement("li");
-    li.classList.add("todo");
-    li.innerHTML = "\n            <div class=\"right\">\n                <input type=\"checkbox\" class=\"checker\"> \n                <span class=\"text\">\n                    ".concat(el.description, "\n                </span>\n            </div>\n            <div class=\"dot-wrapper\">\n                <span class=\"dot\">&#8942;</span>\n            </div>\n        ");
-    ul.appendChild(li);
-  });
-};
+
 window.onload = function () {
-  stockDom();
+  (0,_newFeatures__WEBPACK_IMPORTED_MODULE_1__.stockDom)();
 };
 })();
 

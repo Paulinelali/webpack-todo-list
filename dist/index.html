@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Webpack </title>
 <script defer src="bundle.js"></script></head>
 <body>
-    <div>
-        <ul class="todo-wrapper">
+    <section class="main-wrapper">
+        <section class="todo-wrapper" id="form-title-wrapper">
             <li class="todo-title todo">
-                <div>Today's To Do</div><i>&#xe627;</i>
-                <button><i class="material-icons">&#xe627;</i></button>
+                <div>Today's To Do</div>
+                <button><i class="material-icons icon">&#xe627;</i></button>
             </li>
             <form class="todo-form">
                 <input type="text" class="input-field" placeholder="Add to your list...">
-                <i class="material-icons">&#xe627;</i>
+                <button type="submit"><i class='fas fa-rotate-90 icon'>&#xf3be;</i></button>
             </form>
-
+        </section>
+        <ul class="todo-wrapper ul">
         </ul>
-    </div>
+    </section>
 </body>
 </html>
