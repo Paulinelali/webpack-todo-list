@@ -1,6 +1,3 @@
-
-
-
 const taskField = document.querySelector('.input-field');
 const form = document.querySelector('.todo-form');
 const ul = document.querySelector('.ul');
