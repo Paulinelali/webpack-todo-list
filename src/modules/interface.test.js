@@ -1,5 +1,5 @@
 import Interface from './interface.js';
-import localStorage from './localStorage.js';
+import localStorage from './storage.js';
 
 describe('addTask', () => {
   let inputElement;

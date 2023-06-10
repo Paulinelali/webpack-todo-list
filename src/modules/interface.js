@@ -1,5 +1,5 @@
 import ToDo from './todo.js';
-import localStorage from './localStorage.js';
+import localStorage from './storage.js';
 
 export default class Interface {
   static toDoList = localStorage.getTasks();
