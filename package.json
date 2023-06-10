@@ -9,7 +9,7 @@
     "build": "webpack"
   },
   "keywords": [],
-  "author": "Toyyib Bello",
+  "author": "Ayomide.s.e.p",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.22.0",

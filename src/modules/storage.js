@@ -1,4 +1,4 @@
-export default class StoreLoca {
+export default class localStorage {
   static getTasks = () => {
     let tasks;
     if (localStorage.getItem('tasks') === null) {
