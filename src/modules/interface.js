@@ -1,8 +1,8 @@
 import ToDo from './todo.js';
-import localStorage from './localStorage.js';
+import Storage from './storage.js';
 
 export default class Interface {
-  static toDoList = localStorage.getTasks();
+  static toDoList = Storage.getTasks();
 
   static completedTasks = [];
 
@@ -66,7 +66,7 @@ export default class Interface {
             (task) => task.index === parseInt(event.target.id, 10),
           );
           task.done = event.target.checked;
-          localStorage.updateTasks(Interface.toDoList);
+          Storage.updateTasks(Interface.toDoList);
         });
       });
     }
@@ -82,8 +82,8 @@ export default class Interface {
       } else {
         const index = Interface.toDoList.length;
         const task = new ToDo(title, false, index + 1);
-        localStorage.setTasks(task);
-        Interface.toDoList = localStorage.getTasks();
+        Storage.setTasks(task);
+        Interface.toDoList = Storage.getTasks();
         Interface.completedTasks = [];
         Interface.displayToDoList();
         Interface.emptyFields();
@@ -104,7 +104,7 @@ export default class Interface {
       task.index = currentIndex;
       currentIndex += 1;
     });
-    localStorage.updateTasks(newTasks);
+    Storage.updateTasks(newTasks);
   };
 
     // clear all completed tasks
@@ -116,8 +116,8 @@ export default class Interface {
         const i = 0;
         while (i < Interface.completedTasks.length) {
           const completedTask = Interface.completedTasks[i];
-          localStorage.clearTasks(completedTask);
-          Interface.toDoList = localStorage.getTasks();
+          Storage.clearTasks(completedTask);
+          Interface.toDoList = Storage.getTasks();
           Interface.completedTasks.splice(i, 1); // Remove the completed task from the array
         }
         Interface.arrangeList();
@@ -202,8 +202,8 @@ export default class Interface {
         );
         if (taskIndex !== -1) {
           Interface.toDoList[taskIndex].description = inputValue;
-          localStorage.updateTasks(Interface.toDoList);
-          Interface.toDoList = localStorage.getTasks();
+          Storage.updateTasks(Interface.toDoList);
+          Interface.toDoList = Storage.getTasks();
           Interface.displayToDoList();
         }
       }
@@ -213,8 +213,8 @@ export default class Interface {
   // enable delete if fields are empty
   static deleteTask(e, taskID) {
     e.preventDefault();
-    localStorage.removeTask(e, taskID);
-    Interface.toDoList = localStorage.getTasks();
+    Storage.removeTask(e, taskID);
+    Interface.toDoList = Storage.getTasks();
     Interface.arrangeList();
     Interface.displayToDoList();
     Interface.editList = '';

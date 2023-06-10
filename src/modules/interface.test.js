@@ -1,5 +1,5 @@
 import Interface from './interface.js';
-import localStorage from './localStorage.js';
+import Storage from './storage.js';
 
 describe('addTask', () => {
   let inputElement;
@@ -128,8 +128,8 @@ describe('clearAllTasks', () => {
     <div class="toDoItem"></div>
     <button class="clearTask"></button>
   `;
-    const getTasks = jest.spyOn(localStorage, 'getTasks');
-    const clearTasks = jest.spyOn(localStorage, 'clearTasks');
+    const getTasks = jest.spyOn(Storage, 'getTasks');
+    const clearTasks = jest.spyOn(Storage, 'clearTasks');
     const arrangeList = jest.spyOn(Interface, 'arrangeList');
     const displayToDoList = jest.spyOn(Interface, 'displayToDoList');
 
