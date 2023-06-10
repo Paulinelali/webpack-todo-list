@@ -52,7 +52,7 @@ This is a simple todo web app that uses webpack for development.
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-N/A
+[live-demo](https://paulinelali.github.io/webpack-todo-list/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
