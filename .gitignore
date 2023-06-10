@@ -1,2 +1,4 @@
-.history
+# .gitignore
 node_modules/
+jest.config.js/
+.history
