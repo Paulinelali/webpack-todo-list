@@ -1,5 +1,5 @@
 import ToDo from './todo.js';
-import localStorage from './storage.js';
+import localStorage from './localStorage.js';
 
 export default class Interface {
   static toDoList = localStorage.getTasks();
@@ -210,7 +210,7 @@ export default class Interface {
     }
   }
 
-  // disable delete if fields are empty
+  // enable delete if fields are empty
   static deleteTask(e, taskID) {
     e.preventDefault();
     localStorage.removeTask(e, taskID);
