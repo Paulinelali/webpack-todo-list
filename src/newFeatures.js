@@ -1,3 +1,7 @@
+
+import checker from './interactive.js';
+import clearAllFnc from './clearAllComplete.js';
+
 const taskField = document.querySelector('.input-field');
 const form = document.querySelector('.todo-form');
 const ul = document.querySelector('.ul');
@@ -126,16 +130,25 @@ const ediTable = () => {
 const stockDom = () => {
   ul.innerHTML = '';
   let counter = 0;
-  let fromLocal = localStorage.getItem('task');
-  if (fromLocal) {
-    fromLocal = JSON.parse(fromLocal);
+  const fromLocal = [];
+  let froLocalArr = localStorage.getItem('task');
+  if (froLocalArr) {
+    froLocalArr = JSON.parse(froLocalArr);
+    for (let i = 0; i < froLocalArr.length; i += 1) {
+      if (froLocalArr[i] !== null || froLocalArr[i] !== '') {
+        fromLocal.push(froLocalArr[i]);
+      }
+    }
+
     fromLocal.forEach((el) => {
       const li = document.createElement('li');
       li.classList.add('todo');
+      const newClass = `li-${counter}`;
+      li.classList.add(newClass);
       li.id = `${counter}`;
       li.innerHTML = `
                     <div class="right">
-                        <input type="checkbox" class="checker"> 
+                        <input type="checkbox" class="checker" id="${counter}"> 
                         <span class="todo-text ${counter}" id="editable-${counter}">
                             ${el.task}
                         </span>
@@ -150,7 +163,6 @@ const stockDom = () => {
     });
   }
   ediTable();
-
   clearTodo();
 };
 
@@ -185,6 +197,8 @@ function formFnc(e) {
   e.preventDefault();
   createTask();
   stockDom();
+  clearAllFnc();
+  checker();
 }
 form.addEventListener('submit', formFnc);
 
