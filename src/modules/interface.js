@@ -210,7 +210,7 @@ export default class Interface {
     }
   }
 
-  // enable delete if fields are empty
+  // disable delete if fields are empty
   static deleteTask(e, taskID) {
     e.preventDefault();
     localStorage.removeTask(e, taskID);
